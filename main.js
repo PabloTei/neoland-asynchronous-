@@ -7,7 +7,7 @@ fetch("https://api.agify.io?name=michael")
 
 // 1.2 Dado el siguiente javascript y html. Añade la funcionalidad necesaria usando fetch() para hacer una consulta a la api cuando se haga click en el botón, pasando como parametro de la api, el valor del input.
 
-const baseUrl = 'https://api.nationalize.io'
+/*const baseUrl = 'https://api.nationalize.io'
 
 const myButton = document.querySelector("button");
 const myInput = document.querySelector("input");
@@ -17,7 +17,32 @@ const myFunction = async (name) => {
     const dataJson = await data.json();
     console.log(dataJson);
    
+}
+
+myButton.addEventListener("click", (ev) => {
+    myFunction(myInput.value);
     
+})*/
+
+
+// 1.3 En base al ejercicio anterior. Crea dinamicamente un elemento  por cada petición a la api que diga...'El nombre X tiene un Y porciento de ser de Z' etc etc.EJ: El nombre Pepe tiene un 22 porciento de ser de ET y un 6 porciento de ser de MZ.
+
+const baseUrl = 'https://api.nationalize.io'
+
+const myButton = document.querySelector("button");
+const myInput = document.querySelector("input");
+
+const myFunction = async (name) => {
+    const data = await fetch(`https://api.nationalize.io?name=${name}`)
+    const dataJson = await data.json();
+    for (const country of dataJson.country) {
+        const container = document.querySelector("#container")
+        container.innerHTML += `
+        <p>El nombre ${myInput.value} tiene un ${country.probability*100} % de ser de ${country.country_id}.</p>
+        `;
+    }
+  
+   
 }
 
 myButton.addEventListener("click", (ev) => {
@@ -26,20 +51,8 @@ myButton.addEventListener("click", (ev) => {
 })
 
 
-// 1.3 En base al ejercicio anterior. Crea dinamicamente un elemento  por cada petición a la api que diga...'El nombre X tiene un Y porciento de ser de Z' etc etc.EJ: El nombre Pepe tiene un 22 porciento de ser de ET y un 6 porciento de ser de MZ.
 
-const printNames = () => {
-    const container = document.querySelector("#container")
-   
-    container.innerHTML += `
-    <p>El nombre ${myInput.value} tiene un </p>
-        `;
 
-}
-
-for (const country of dataJson.country) {
-    console.log(country);
-}
 
 
 
