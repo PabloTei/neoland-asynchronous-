@@ -1,26 +1,45 @@
 // 1.1 Utiliza esta url de la api Agify 'https://api.agify.io?name=michael' para hacer un .fetch() y recibir los datos que devuelve. Imprimelo mediante un console.log(). Para ello, es necesario que crees un .html y un .js.
 
-const data = () => {
-    fetch("https://api.agify.io?name=michael")
-    .then((res) => res.json())
-    .then((info) => console.log(info));
-};
-data();
+fetch("https://api.agify.io?name=michael")
+.then((res) => res.json())
+.then((res) => console.log(res))
+
 
 // 1.2 Dado el siguiente javascript y html. Añade la funcionalidad necesaria usando fetch() para hacer una consulta a la api cuando se haga click en el botón, pasando como parametro de la api, el valor del input.
 
 const baseUrl = 'https://api.nationalize.io'
 
+const myButton = document.querySelector("button");
+const myInput = document.querySelector("input");
 
+const myFunction = async (name) => {
+    const data = await fetch(`https://api.nationalize.io?name=${name}`)
+    const dataJson = await data.json();
+    console.log(dataJson);
+   
+    
+}
 
-
+myButton.addEventListener("click", (ev) => {
+    myFunction(myInput.value);
+    
+})
 
 
 // 1.3 En base al ejercicio anterior. Crea dinamicamente un elemento  por cada petición a la api que diga...'El nombre X tiene un Y porciento de ser de Z' etc etc.EJ: El nombre Pepe tiene un 22 porciento de ser de ET y un 6 porciento de ser de MZ.
 
+const printNames = () => {
+    const container = document.querySelector("#container")
+   
+    container.innerHTML += `
+    <p>El nombre ${myInput.value} tiene un </p>
+        `;
 
+}
 
-
+for (const country of dataJson.country) {
+    console.log(country);
+}
 
 
 
