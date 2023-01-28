@@ -41,18 +41,12 @@ const myFunction = async (name) => {
         <p>El nombre ${myInput.value} tiene un ${country.probability*100} % de ser de ${country.country_id}.</p>
         `;
     }
-  
-   
 }
 
 myButton.addEventListener("click", (ev) => {
     myFunction(myInput.value);
     
 })
-
-
-
-
 
 
 
