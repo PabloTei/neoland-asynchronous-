@@ -74,7 +74,7 @@ runTimeOut();
 
 // 2.2 Convierte la siguiente función con un fetch utilizando async-await. Recuerda que para usar .fetch() tendrás que probar el ejercicio en el navegador;
 
-const getCharacters = () => {
+const getCharacters = async () => {
     const res = await fetch('https://rickandmortyapi.com/api/character')
     const characters = await res.json();
     console.log(characters)
